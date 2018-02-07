@@ -1,0 +1,60 @@
+<div class="container">
+  <canvas width="800" height="300" class="canvas"></canvas>
+  <form class="example-form">
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="模板名称" [(ngModel)]="label.name">
+    </mat-form-field>
+      
+    
+
+    <mat-form-field class="example-full-width">
+      <mat-select placeholder="字体选择">
+        <mat-option  [value]="label.font"  name="need1">
+          微软雅黑
+          西洋文字
+          宋体
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="变量名" [(ngModel)]="label.text.contentNeedInput" name="need">
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="label.text.position.x" type="number" name="need">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="y偏移" [(ngModel)]="label.text.position.y" type="number" name="needed">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="标题" [(ngModel)]="label.text.title"  name="needed">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="内容" [(ngModel)]="label.text.content"  name="needed">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="是否旋转" [(ngModel)]="label.text.rotate"  name="needed">
+      </mat-form-field>
+  
+
+
+
+
+    
+    
+
+    
+
+
+
+
+
+  </form>
+</div>

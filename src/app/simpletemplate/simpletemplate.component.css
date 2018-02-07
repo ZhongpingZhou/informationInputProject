@@ -1,0 +1,23 @@
+.canvas{
+    border: 2px solid blue;
+    background-color: beige;
+
+}
+.container
+{
+    width: 800px;
+
+    display:block;
+    margin: 0 auto;
+    text-align: left;
+}
+example-form 
+{
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+.example-full-width {
+    width: 100%;
+  }
