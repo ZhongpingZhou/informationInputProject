@@ -18,16 +18,16 @@
 
     
     <div *ngIf="item.detail.enumList.value==null" >
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="{{item.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(单位:{{item.detail.unit}})"  [(ngModel)]="item.detail.enumList.text" name="fdsfsd">
-        </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="{{item.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(单位:{{item.detail.unit}})"  [(ngModel)]="item.detail.enumList.text" name="fdsfsd">
+      </mat-form-field>
     </div>
 
 
   </div>
 </div>
 <div class="example-container">
-  <button mat-fab >保存</button>
+  <button mat-fab  (click)="onSaveRoot() ">保存</button>
 </div>
 
 

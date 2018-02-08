@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Root } from '../interfaces/root';
 import { Config_block } from '../interfaces/config_blocks';
+import { RestApiService } from '../rest-api.service';
 
 @Component
 ({
@@ -10,6 +11,7 @@ import { Config_block } from '../interfaces/config_blocks';
 })
 export class EditComponent  
 {
+  
   root:Root =
   {
     config_blocks:
@@ -265,12 +267,15 @@ export class EditComponent
   onSaveRoot() 
   {
     try {
+      this.restApiService.saveTemplate(this.diagnostic);
 
     } catch (error) {
       console.log(error);
       return;
     }
   }
+
+  constructor(private restApiService:RestApiService){};
 
 
   

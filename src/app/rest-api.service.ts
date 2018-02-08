@@ -11,7 +11,7 @@ export class RestApiService
   saveTemplate (template): Promise<any>{
     const header = new Headers();
     header.append('Accept', 'application/json');
-    const url = RestApiService.host + '/rest_api/templates/';
+    const url = /*RestApiService.host + '/rest_api/templates/';*/'http://localhost:8080/saysomethingtoangular/a';
     return this.http.post(url, template, {headers: header})
         .toPromise()
         .then(response => response.json())

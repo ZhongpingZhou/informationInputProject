@@ -21,6 +21,7 @@ import { HeroComponent } from './hero/hero.component';
 import { TableBasicExample } from './table-basic-example/table-basic-example.component';
 import { EditComponent } from './edit/edit.component';
 import { EdittestComponent } from './edittest/edittest.component';
+import { RestApiService } from './rest-api.service';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { EdittestComponent } from './edittest/edittest.component';
   declarations: [
     AppComponent,DefineModuleComponent, SimpletemplateComponent,  HeroComponent, TableBasicExample, EditComponent, EdittestComponent
   ],
+  providers:[RestApiService],
   bootstrap: [AppComponent ]
 })
 export class AppModule { }
