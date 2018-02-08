@@ -17,6 +17,7 @@ import { SimpletemplateComponent } from './simpletemplate/simpletemplate.compone
 import { HeroComponent } from './hero/hero.component';
 import { TableBasicExample } from './table-basic-example/table-basic-example.component';
 import { EditComponent } from './edit/edit.component';
+import { EdittestComponent } from './edittest/edittest.component';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { EditComponent } from './edit/edit.component';
     MatSelectModule
   ],
   declarations: [
-    AppComponent,DefineModuleComponent, SimpletemplateComponent,  HeroComponent, TableBasicExample, EditComponent
+    AppComponent,DefineModuleComponent, SimpletemplateComponent,  HeroComponent, TableBasicExample, EditComponent, EdittestComponent
   ],
   bootstrap: [AppComponent ]
 })

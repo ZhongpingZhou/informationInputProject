@@ -7,11 +7,7 @@ export class Hero {
 
 @Component({
   selector: 'my-app',
-  template: `
-
-
-    <templatessssss></templatessssss>
-    `
+  templateUrl:'./app.component.html'
 })
 export class AppComponent {
   title = 'Tour of Heroes';

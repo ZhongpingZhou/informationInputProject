@@ -1,3 +1,33 @@
-<p>
-  edit works!
-</p>
+<div class="example-container  block" *ngFor="let block of root.config_blocks"  ><!--config_blocks 是数组,遍历将取出每一个配置块-->
+  <p><strong>{{block.text}}</strong></p>
+  <div  *ngFor="let item of block.items" >
+
+
+
+
+    <div *ngIf="item.detail.enumList">
+      <mat-form-field>
+        <mat-select placeholder="{{item.text}}" class="example-full-width" >
+          <mat-option *ngFor="let enum of item.detail.enumList" [value]="enum.text">
+            {{enum.text}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+    
+    <div *ngIf="item.detail.enumList==null" >
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="{{item.text}}">
+        </mat-form-field>
+      </form>
+    </div>
+
+
+  </div>
+</div>
+
+
+<p>{{diagnostic}}</p>
