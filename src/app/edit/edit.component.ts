@@ -277,6 +277,13 @@ export class EditComponent
 
   constructor(private restApiService:RestApiService){};
 
+  getInformation()
+  {
+
+  }
+
+  
+
 
   
 

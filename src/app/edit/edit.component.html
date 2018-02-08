@@ -9,7 +9,7 @@
       <mat-form-field class="example-full-width">
         <mat-select placeholder="{{item.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(单位:{{item.detail.unit}})"   [(ngModel)]="item.detail.enumList.text" >
           <mat-option *ngFor="let select of selects" [value]="select">
-            {{ select}}
+            {{select}}
           </mat-option>
         </mat-select>
       </mat-form-field>  
