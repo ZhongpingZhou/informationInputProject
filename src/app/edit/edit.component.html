@@ -1,32 +1,33 @@
-<div class="example-container  block" *ngFor="let block of root.config_blocks"  ><!--config_blocks 是数组,遍历将取出每一个配置块-->
+<div class="example-container" *ngFor="let block of root.config_blocks"  ><!--config_blocks 是数组,遍历将取出每一个配置块-->
   <p><strong>{{block.text}}</strong></p>
   <div  *ngFor="let item of block.items" >
 
 
 
 
-    <div *ngIf="item.detail.enumList">
-      <mat-form-field>
-        <mat-select placeholder="{{item.text}}" class="example-full-width" >
-          <mat-option *ngFor="let enum of item.detail.enumList" [value]="enum.text">
-            {{enum.text}}
+    <div *ngIf="item.detail.enumList.value!=null" >
+      <mat-form-field class="example-full-width">
+        <mat-select placeholder="{{item.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(单位:{{item.detail.unit}})"   [(ngModel)]="item.detail.enumList.text" >
+          <mat-option *ngFor="let select of selects" [value]="select">
+            {{ select}}
           </mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-form-field>  
     </div>
 
 
     
-    <div *ngIf="item.detail.enumList==null" >
-      <form class="example-form">
+    <div *ngIf="item.detail.enumList.value==null" >
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="{{item.text}}">
+          <input matInput placeholder="{{item.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(单位:{{item.detail.unit}})"  [(ngModel)]="item.detail.enumList.text" name="fdsfsd">
         </mat-form-field>
-      </form>
     </div>
 
 
   </div>
+</div>
+<div class="example-container">
+  <button mat-fab >保存</button>
 </div>
 
 

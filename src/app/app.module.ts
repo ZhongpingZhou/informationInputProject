@@ -2,6 +2,9 @@ import {  NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms'; // <-- NgModel lives here
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { HttpModule } from '@angular/http';
+
+import {MatButtonModule} from '@angular/material/button';
 
 
 import {MatTableModule} from '@angular/material/table';
@@ -28,7 +31,9 @@ import { EdittestComponent } from './edittest/edittest.component';
 
     MatTableModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonModule,
+    HttpModule
   ],
   declarations: [
     AppComponent,DefineModuleComponent, SimpletemplateComponent,  HeroComponent, TableBasicExample, EditComponent, EdittestComponent

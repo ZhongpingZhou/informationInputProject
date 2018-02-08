@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Root } from '../interfaces/root';
 import { Config_block } from '../interfaces/config_blocks';
 
-@Component({
+@Component
+({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
@@ -27,17 +28,10 @@ export class EditComponent
             {
               unit:null,
               enumList:
-              [
-                {
-                  value:0,
-                  text:"短在线"
-                },
-                {
-                  value:1,
-                  text:"长在线"
-                }
-              ]
-
+              {
+                value:0,
+                text:"短链接"
+              }
             }
 
           },
@@ -50,12 +44,11 @@ export class EditComponent
             {
               unit:"分钟",
               enumList:
-              [
-                {
-                  value:0,
-                  text:null,
-                }
-              ]
+              {
+                value:null,
+                text:null
+
+              }
             }
 
           },
@@ -76,8 +69,12 @@ export class EditComponent
             detail:
             {
               unit:"秒",
-              enumList:null
+              enumList:
+              {
+                value:null,
+                text:null
 
+              }
             }
 
           },
@@ -89,7 +86,12 @@ export class EditComponent
             detail:
             {
               unit:"mg",
-              enumList:null
+              enumList:
+              {
+                value:null,
+                text:null
+
+              }
             }
 
           },
@@ -100,7 +102,12 @@ export class EditComponent
             detail:
             {
               unit:"毫秒",
-              enumList:null
+              enumList:
+              {
+                value:null,
+                text:null
+
+              }
             }
           },
 
@@ -111,7 +118,12 @@ export class EditComponent
             detail:
             {
               unit:"mg",
-              enumList:null
+              enumList:
+              {
+                value:null,
+                text:null
+
+              }
             }
           },
 
@@ -122,7 +134,12 @@ export class EditComponent
             detail:
             {
               unit:"毫秒",
-              enumList:null
+              enumList:
+              {
+                value:null,
+                text:null
+
+              }
             }
           },
 
@@ -135,12 +152,11 @@ export class EditComponent
             {
               unit:null,
               enumList:
-              [
-                {
-                  value:0,
-                  text:"保留",
-                }
-              ]
+              {
+                value:0,
+                text:"保留",
+              }
+              
             }
           }
 
@@ -161,7 +177,12 @@ export class EditComponent
             detail:
             {
               unit:"mg",
-              enumList:null
+              enumList:
+              {
+                value:null,
+                text:null
+
+              }
 
             }
 
@@ -174,7 +195,12 @@ export class EditComponent
             detail:
             {
               unit:"mg",
-              enumList:null
+              enumList:
+              {
+                value:null,
+                text:null
+
+              }
             }
 
           },
@@ -185,7 +211,12 @@ export class EditComponent
             detail:
             {
               unit:"mg",
-              enumList:null
+              enumList:
+              {
+                value:null,
+                text:null
+
+              }
             }
           },
 
@@ -206,7 +237,12 @@ export class EditComponent
             detail:
             {
               unit:"台",
-              enumList:null
+              enumList:
+              {
+                value:null,
+                text:null
+
+              }
             }
           }
         ]
@@ -222,9 +258,19 @@ export class EditComponent
 
     ]
   }
-
+  selects:string[]=["短连接","长链接"]
 
   get diagnostic() { return JSON.stringify(this.root); }
+
+  onSaveRoot() 
+  {
+    try {
+
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+  }
 
 
   
