@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Root } from '../interfaces/root';
 import { Config_block } from '../interfaces/config_blocks';
 import { RestApiService } from '../rest-api.service';
+import { Model } from '../tryHard/model';
 
 @Component
 ({
@@ -32,7 +33,8 @@ export class EditComponent
               enumList:
               {
                 value:0,
-                text:"短链接"
+                text:"短链接",
+                sstring:true
               }
             }
 
@@ -48,7 +50,8 @@ export class EditComponent
               enumList:
               {
                 value:null,
-                text:null
+                text:null,
+                sstring:false
 
               }
             }
@@ -74,7 +77,8 @@ export class EditComponent
               enumList:
               {
                 value:null,
-                text:null
+                text:null,
+                sstring:false
 
               }
             }
@@ -91,7 +95,8 @@ export class EditComponent
               enumList:
               {
                 value:null,
-                text:null
+                text:null,
+                sstring:false
 
               }
             }
@@ -107,7 +112,8 @@ export class EditComponent
               enumList:
               {
                 value:null,
-                text:null
+                text:null,
+                sstring:false
 
               }
             }
@@ -123,7 +129,8 @@ export class EditComponent
               enumList:
               {
                 value:null,
-                text:null
+                text:null,
+                sstring:false
 
               }
             }
@@ -139,7 +146,8 @@ export class EditComponent
               enumList:
               {
                 value:null,
-                text:null
+                text:null,
+                sstring:false
 
               }
             }
@@ -157,6 +165,7 @@ export class EditComponent
               {
                 value:0,
                 text:"保留",
+                sstring:true,
               }
               
             }
@@ -182,7 +191,8 @@ export class EditComponent
               enumList:
               {
                 value:null,
-                text:null
+                text:null,
+                sstring:false
 
               }
 
@@ -200,7 +210,8 @@ export class EditComponent
               enumList:
               {
                 value:null,
-                text:null
+                text:null,
+                sstring:false
 
               }
             }
@@ -216,7 +227,8 @@ export class EditComponent
               enumList:
               {
                 value:null,
-                text:null
+                text:null,
+                sstring:false
 
               }
             }
@@ -242,7 +254,8 @@ export class EditComponent
               enumList:
               {
                 value:null,
-                text:null
+                text:null,
+                sstring:false
 
               }
             }
@@ -260,16 +273,82 @@ export class EditComponent
 
     ]
   }
-  selects:string[]=["短连接","长链接"]
+  selects:string[]=["短连接","长链接"];
+  select1:string[]=["保留","不保留"];//question
+  model:Model = {
+    online_mode:null,
+    heart_beat_time:null,
+    silence_time:null,
+    motion_threshold:null,
+    motion_keep_time:null,
+    still_threshold:null,
+    still_keep_time:null,
+    space_holder_1:null,
+    acceleration_offset_x:null,
+    acceleration_offset_y:null,
+    acceleration_offset_z:null,
+    slave_number:null,
+  }
 
-  get diagnostic() { return JSON.stringify(this.root); }
+  get diagnostic() 
+  { 
+    return JSON.stringify(this.model); 
+  }
+
+
+
+  change()
+  {
+    // for(let block of this.root.config_blocks)
+    // {
+    //   for(let item of block.items)
+    //   {
+    //     if(item.detail.enumList.text=="短连接")
+    //     {
+    //       this.model.online_mode=0;
+    //     }
+    //     else if(item.detail.enumList.text=="长链接")
+    //     {
+    //       this.model.online_mode=1;
+    //     }
+    
+    //   }
+
+    
+    if(this.root.config_blocks[0].items[0].detail.enumList.text=="短连接")
+    {
+      this.model.online_mode = 1;
+    }
+    else
+    {
+      this.model.online_mode = 0;
+    }
+    this.model.space_holder_1=0;
+    this.model.heart_beat_time=this.root.config_blocks[0].items[1].detail.enumList.text;
+    this.model.silence_time = this.root.config_blocks[1].items[0].detail.enumList.text;
+    this.model.motion_threshold = this.root.config_blocks[1].items[1].detail.enumList.text;
+    this.model.motion_keep_time =this.root.config_blocks[1].items[2].detail.enumList.text;
+    this.model.still_threshold =this.root.config_blocks[1].items[3].detail.enumList.text;
+    this.model.still_keep_time=this.root.config_blocks[1].items[4].detail.enumList.text;
+    
+    this.model.acceleration_offset_x = this.root.config_blocks[2].items[0].detail.enumList.text;
+    this.model.acceleration_offset_y = this.root.config_blocks[2].items[1].detail.enumList.text;
+    this.model.acceleration_offset_z = this.root.config_blocks[2].items[2].detail.enumList.text;
+    this.model.slave_number = this.root.config_blocks[3].items[0].detail.enumList.text;
+    console.log(this.model);
+  }
 
   onSaveRoot() 
   {
-    try {
+    
+    
+   
+    try 
+    {
       this.restApiService.saveTemplate(this.diagnostic);
 
-    } catch (error) {
+    } catch (error) 
+    {
       console.log(error);
       return;
     }
@@ -282,9 +361,14 @@ export class EditComponent
 
   }
 
-  
 
-
-  
-
+  whathavechanged()
+  {
+    console.log(this.root.config_blocks[0].items[1].detail.enumList.text);
+    this.model.heart_beat_time=this.root.config_blocks[0].items[1].detail.enumList.text;
+    console.log(this.model.heart_beat_time);
+    this.change();
+    console.log(JSON.stringify(this.model));
+    
+  }
 }

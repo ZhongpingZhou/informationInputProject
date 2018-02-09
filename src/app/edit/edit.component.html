@@ -6,28 +6,42 @@
 
 
     <div *ngIf="item.detail.enumList.value!=null" >
-      <mat-form-field class="example-full-width">
-        <mat-select placeholder="{{item.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(单位:{{item.detail.unit}})"   [(ngModel)]="item.detail.enumList.text" >
-          <mat-option *ngFor="let select of selects" [value]="select">
-            {{select}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>  
+
+      <div *ngIf="item.key==&quot;online_mode&quot;">
+        <mat-form-field class="example-full-width">
+          <mat-select placeholder="{{item.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(单位:{{item.detail.unit}})"   [(ngModel)]="item.detail.enumList.text" >
+            <mat-option *ngFor="let select of selects" [value]="select">
+              {{select}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      
+      <div *ngIf="item.key==&quot;space_holder_1&quot;">
+        <mat-form-field class="example-full-width">
+          <mat-select placeholder="{{item.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(单位:{{item.detail.unit}})"   [(ngModel)]="item.detail.enumList.text" >
+            <mat-option *ngFor="let select of select1" [value]="select">
+              {{select}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>  
+
     </div>
 
 
     
     <div *ngIf="item.detail.enumList.value==null" >
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="{{item.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(单位:{{item.detail.unit}})"  [(ngModel)]="item.detail.enumList.text" name="fdsfsd">
+        <input matInput placeholder="{{item.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(单位:{{item.detail.unit}})"  [(ngModel)]="item.detail.enumList.text" name="fdsfsd" type="number">
       </mat-form-field>
     </div>
 
 
   </div>
 </div>
-<div class="example-container">
-  <button mat-fab  (click)="onSaveRoot() ">保存</button>
+<div class="align" >
+  <button mat-fab  (click)="whathavechanged()">保存</button>
 </div>
 
 

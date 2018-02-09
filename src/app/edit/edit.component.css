@@ -11,4 +11,12 @@
 }
   .example-full-width {
     width: 100%;
+    
+  }
+  .align
+  {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+
   }
