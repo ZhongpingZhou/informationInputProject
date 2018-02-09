@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class RestApiService 
 {
-  static host = '/api/label';
-  constructor(private http: Http)
+  private headers = new Headers({'Content-Type': 'application/json'});
+  private rootUrl ='api/heroes';
+  constructor(private http:Http){}
+  private handleError(error: any): Promise<any> 
   {
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
   }
-  saveTemplate (template): Promise<any>{
-    const header = new Headers();
-    header.append('Accept', 'application/json');
-    const url = /*RestApiService.host + '/rest_api/templates/';*/'http://localhost:8080/saysomethingtoangular/a';
-    return this.http.post(url, template, {headers: header})
-        .toPromise()
-        .then(response => response.json())
-        .catch(err => 
-        {
-          console.log(err);
-          return Promise.reject(err);
-        });
+
+  
+  save(str)
+  {
+
+     this.http.post(this.rootUrl,JSON.stringify(str),{headers:this.headers});
+
   }
 
 

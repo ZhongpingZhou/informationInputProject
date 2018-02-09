@@ -295,6 +295,8 @@ export class EditComponent
     return JSON.stringify(this.model); 
   }
 
+  
+
 
 
   change()
@@ -338,23 +340,10 @@ export class EditComponent
     console.log(this.model);
   }
 
-  onSaveRoot() 
-  {
-    
-    
-   
-    try 
-    {
-      this.restApiService.saveTemplate(this.diagnostic);
 
-    } catch (error) 
-    {
-      console.log(error);
-      return;
-    }
-  }
-
-  constructor(private restApiService:RestApiService){};
+  constructor(private restApiService:RestApiService,
+  
+  ){};
 
   getInformation()
   {
@@ -370,5 +359,11 @@ export class EditComponent
     this.change();
     console.log(this.model);
     
+  }
+  sendSave()
+  {
+    this.change;
+    this.restApiService.save(this.model);
+
   }
 }
