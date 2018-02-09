@@ -368,7 +368,7 @@ export class EditComponent
     this.model.heart_beat_time=this.root.config_blocks[0].items[1].detail.enumList.text;
     console.log(this.model.heart_beat_time);
     this.change();
-    console.log(JSON.stringify(this.model));
+    console.log(this.model);
     
   }
 }
