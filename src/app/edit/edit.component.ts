@@ -3,6 +3,7 @@ import { Root } from '../interfaces/root';
 import { Config_block } from '../interfaces/config_blocks';
 import { RestApiService } from '../rest-api.service';
 import { Model } from '../tryHard/model';
+import { Http } from '@angular/http';
 
 @Component
 ({
@@ -13,6 +14,7 @@ import { Model } from '../tryHard/model';
 export class EditComponent  
 {
   
+  //做双向数据绑定的数据模型，，定义的稍微复杂了一点，是根据一个描述前后端的JSON定义的
   root:Root =
   {
     config_blocks:
@@ -273,8 +275,9 @@ export class EditComponent
 
     ]
   }
-  selects:string[]=["短连接","长链接"];
+  selects:string[]=["短连接","长链接"];//选择
   select1:string[]=["保留","不保留"];//question
+  //返回给后端的数据模型定义
   model:Model = {
     online_mode:null,
     heart_beat_time:null,
@@ -290,6 +293,7 @@ export class EditComponent
     slave_number:null,
   }
 
+  //获得JSON数据，用于测试
   get diagnostic() 
   { 
     return JSON.stringify(this.model); 
@@ -298,7 +302,7 @@ export class EditComponent
   
 
 
-
+  //将做了双向数据绑定的root赋值给返回非后端的数据模型model
   change()
   {
     // for(let block of this.root.config_blocks)
@@ -337,33 +341,19 @@ export class EditComponent
     this.model.acceleration_offset_y = this.root.config_blocks[2].items[1].detail.enumList.text;
     this.model.acceleration_offset_z = this.root.config_blocks[2].items[2].detail.enumList.text;
     this.model.slave_number = this.root.config_blocks[3].items[0].detail.enumList.text;
-    console.log(this.model);
   }
 
 
+  //服务注入
   constructor(private restApiService:RestApiService,
+    private http:Http
   
   ){};
 
-  getInformation()
-  {
-
-  }
-
-
-  whathavechanged()
-  {
-    console.log(this.root.config_blocks[0].items[1].detail.enumList.text);
-    this.model.heart_beat_time=this.root.config_blocks[0].items[1].detail.enumList.text;
-    console.log(this.model.heart_beat_time);
-    this.change();
-    console.log(this.model);
-    
-  }
+  //调用前后端接口RestApi,发送给后端
   sendSave()
   {
-    this.change;
-    this.restApiService.save(this.model);
-
+    this.change();//更加此时此刻的做了双向数据绑定的root数据，更新model数据
+    this.restApiService.save(this.model);//发送给后端
   }
 }
