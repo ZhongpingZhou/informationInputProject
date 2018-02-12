@@ -6,7 +6,7 @@ import {HttpModule} from '@angular/http';
 
 
 
-import {MatSelectModule} from '@angular/material/select';
+
 import { DefineModuleComponent } from './material/template';
 import {MatInputModule} from '@angular/material/input';
 
@@ -22,7 +22,7 @@ import { RestApiService } from './rest-api.service';
 import {MatButtonModule} from '@angular/material/button';
 import { LoginComponent } from './login/login.component';
 
-
+import {MatSelectModule} from '@angular/material/select';
 
 
 
