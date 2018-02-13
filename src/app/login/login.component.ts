@@ -27,8 +27,12 @@ export class LoginComponent
 
   login()
   {
-   this.restApiService.login(this.user).then( token => console.log(this.token = token));
+    this.restApiService.login(this.user).then( token => console.log(this.token = token));
   }
 
+  getYourOwnOrgId()
+  {
+    this.restApiService.getYourOwnOrgId();
+  }
 
 }

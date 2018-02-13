@@ -278,7 +278,8 @@ export class EditComponent
   selects:string[]=["短连接","长链接"];//选择
   select1:string[]=["保留","不保留"];//question
   //返回给后端的数据模型定义
-  model:Model = {
+  model:Model = 
+  {
     online_mode:null,
     heart_beat_time:null,
     silence_time:null,
@@ -292,7 +293,10 @@ export class EditComponent
     acceleration_offset_z:null,
     slave_number:null,
   }
-
+  
+  
+  stringodel:string;
+  
   //获得JSON数据，用于测试
   get diagnostic() 
   { 

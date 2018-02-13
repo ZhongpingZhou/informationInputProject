@@ -5,6 +5,7 @@ import { Model } from './tryHard/model';
 import { User } from './login/user';
 import { promise } from 'selenium-webdriver';
 import { Token } from './login/token';
+import { NgModel } from '@angular/forms/src/directives/ng_model';
 
 
 @Injectable()
@@ -13,7 +14,12 @@ export class RestApiService
 
   private rootUrl1 = '/proxy/token-auth/';
   private headers = new Headers({'Content-Type': 'application/json'});
+  
   private rootUrl ='/angular/saysomethingtoangular/a';
+  private url3='/proxy/account/';
+  
+
+
   private csrftoken: string;
   constructor(private http:Http){}
   private handleError(error: any): Promise<any> 
@@ -56,12 +62,34 @@ export class RestApiService
   }
 
 
+
+  save1(str:Model)
+  {
+    console.log("change format");
+
+  }
+
+
 //用户登录
   login(user:User):Promise<Token>
   {
     return  this.http.post(this.rootUrl1,JSON.stringify(user),{headers:this.headers}).toPromise().then(res => (res.json()) as Token)
     .catch(this.handleError);
   
+  }
+  getYourOwnOrgId()
+  {
+    this.headers.append('Authorization','Token bc00b47897a971eb42778b708528422c9d1d48ab');
+    this.http.get(this.url3,{headers:this.headers}).toPromise().then(response => console.log(response.json()));
+
+
+  }
+
+  getConfigSchemas()
+  {
+    this.headers.append('Authorization','Token bc00b47897a971eb42778b708528422c9d1d48ab');
+    this.http
+
   }
 
 
