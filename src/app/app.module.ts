@@ -18,11 +18,13 @@ import { AppComponent }  from './app.component';
 import { EditComponent } from './edit/edit.component';
 
 import { RestApiService } from './rest-api.service';
-//import { LoginComponent } from './login/login.component';
+// import { LoginComponent } from './login/login.component';
 import {MatButtonModule} from '@angular/material/button';
 import { LoginComponent } from './login/login.component';
 
 import {MatSelectModule} from '@angular/material/select';
+
+
 
 
 
@@ -32,9 +34,9 @@ import {MatSelectModule} from '@angular/material/select';
     BrowserModule,
     FormsModule, 
     NoopAnimationsModule,
+     MatSelectModule,
     
-    
-    MatSelectModule,
+
     
     MatInputModule,
     MatButtonModule,

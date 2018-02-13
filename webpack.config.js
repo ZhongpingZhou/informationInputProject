@@ -438,14 +438,10 @@ module.exports = {
     "devServer": {
         proxy: {
             '/api': {
-                target: 'http://localhost:6900/',
+                target: 'http://localhost:8080/',
                 pathRewrite: { '^/api': '' },
                 changeOrigin: true
             }
         },
-        publicPath: '/label-print/',
-        historyApiFallback: {
-            index: '/label-print/'
-        }
     }
 };
