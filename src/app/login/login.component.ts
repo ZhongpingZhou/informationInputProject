@@ -10,13 +10,14 @@ import { Token } from './token';
 })
 export class LoginComponent  
 {
-  user:User = {
-    username:"zzp",
-    password:"123456"
+  user:User = 
+  {
+    username:"",
+    password:""
   };
   token:Token = 
   {
-    token:""
+    token:null
 
   }
   get diagnostic() 
@@ -27,7 +28,15 @@ export class LoginComponent
 
   login()
   {
-    this.restApiService.login(this.user).then( token => console.log(this.token = token));
+    this.restApiService.login(this.user).then(token => this.token=token).then(
+      token=>{
+        if(this.token.token!=null)
+        {
+          window.location.href='edit';
+
+        }
+      }
+    );
   }
 
   getYourOwnOrgId()
@@ -35,4 +44,6 @@ export class LoginComponent
     this.restApiService.getYourOwnOrgId();
   }
 
+
+  
 }

@@ -6,11 +6,15 @@ import { User } from './login/user';
 import { promise } from 'selenium-webdriver';
 import { Token } from './login/token';
 import { NgModel } from '@angular/forms/src/directives/ng_model';
+import { Subject } from 'rxjs/Subject';
 
 
 @Injectable()
 export class RestApiService 
 {
+  private is_login = false;
+  private _loginStateSource = new Subject();
+  loginState$ = this._loginStateSource.asObservable();
 
   private rootUrl1 = '/proxy/token-auth/';
   private headers = new Headers({'Content-Type': 'application/json'});
@@ -70,7 +74,7 @@ export class RestApiService
   }
 
 
-//用户登录
+//用户登录  login 组件调用,返回一个token;
   login(user:User):Promise<Token>
   {
     return  this.http.post(this.rootUrl1,JSON.stringify(user),{headers:this.headers}).toPromise().then(res => (res.json()) as Token)
@@ -91,6 +95,8 @@ export class RestApiService
     this.http
 
   }
+
+  
 
 
 }

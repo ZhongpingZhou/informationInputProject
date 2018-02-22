@@ -308,6 +308,7 @@ export class EditComponent
 
   //将做了双向数据绑定的root赋值给返回非后端的数据模型model
   change()
+  
   {
     // for(let block of this.root.config_blocks)
     // {
