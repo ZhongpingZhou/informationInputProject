@@ -16,6 +16,7 @@ import {MatSelectModule} from '@angular/material/select';
 
 import { RouterModule }   from '@angular/router';
 import { HeaderComponent } from './header/header.component';
+import { GuardService } from './guard-service.service';
 
 
 
@@ -44,7 +45,8 @@ import { HeaderComponent } from './header/header.component';
       },
       {
         path: 'edit',
-        component:EditComponent
+        component:EditComponent,
+        canActivate: [GuardService]
       }
     ]),
     
@@ -60,7 +62,7 @@ import { HeaderComponent } from './header/header.component';
   declarations: [
     AppComponent,DefineModuleComponent, EditComponent, LoginComponent, HeaderComponent, // LoginComponent
   ],
-  providers:[RestApiService],
+  providers:[RestApiService,GuardService],
   bootstrap: [AppComponent ]
 })
 export class AppModule { }

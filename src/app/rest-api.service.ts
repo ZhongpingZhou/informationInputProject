@@ -12,7 +12,7 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class RestApiService 
 {
-  private is_login = false;
+  is_login = false;
   private _loginStateSource = new Subject();
   loginState$ = this._loginStateSource.asObservable();
 
