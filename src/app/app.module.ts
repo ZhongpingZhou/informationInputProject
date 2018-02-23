@@ -51,6 +51,7 @@ import { FormComponent } from './form/form.component';
       {
         path: 'form',
         component:FormComponent,
+        canActivate: [GuardService]
         //canActivate: [GuardService]
       }
     ]),

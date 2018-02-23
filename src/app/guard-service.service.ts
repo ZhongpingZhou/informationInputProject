@@ -13,7 +13,7 @@ export class GuardService implements CanActivate
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     
     var path = route.routeConfig.path;
-    const nextRoute = ['login','edit'];
+    const nextRoute = ['login','edit','form'];
     let isLogin = this.restApi.doAuthorityManage();
     console.log(isLogin);
   
@@ -30,7 +30,6 @@ export class GuardService implements CanActivate
       }
       else
       {
-
         //已经登录，跳转到当前路由
         return true;
       }
