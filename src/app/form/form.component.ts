@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormModel } from './form-model/model';
 import { ReturnModel } from './return-model/return-model';
+import { RestApiService } from '../rest-api.service';
 
 
 
@@ -229,6 +230,7 @@ export class FormComponent implements OnInit
     console.log(this.returnValue);
     this.returnModel.content =this.returnValue;
     console.log(this.returnModel);
+    
   }
 
 

@@ -19,22 +19,21 @@ export class RestApiService
   private rootUrl1 = '/proxy/token-auth/';
   private headers = new Headers({'Content-Type': 'application/json'});
   
-  private rootUrl ='/angular/saysomethingtoangular/a';
   private url3='/proxy/account/';
   
 
-
-  private csrftoken: string;
   constructor(private http:Http){}
+
+  //错误处理方法
   private handleError(error: any): Promise<any> 
   {
-
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
 
   }
 
 
+  //权限,判断cookie是否为空
   doAuthorityManage():boolean
   {
     if(document.cookie=="")
@@ -50,40 +49,21 @@ export class RestApiService
   }
 
 
+  // 向浏览器中添加cookie (当用户登录成功时)
   addCookie(arg0)
   {
     document.cookie = `token =`+arg0;
     console.log(document.cookie);
   }
-
-
-
-
-
-
-  getHeaders (is_submit = false): Headers {
-    const header = new Headers();
-    header.append('Accept', 'application/json');
-
-    if (is_submit) 
-    {
-      header.append('X-CSRFToken', this.csrftoken);
-      header.append('Content-Type', 'application/json');
-    }
-
-    return header;
-  }
-
   
   save(str:Model)
   {
-    console.log("to be or not to be ");
-
-    this.http.post(this.rootUrl,JSON.stringify(str),{headers:this.headers})
+    const rootUrl ='/angular/saysomethingtoangular/a';
+    console.log("将数据发送到服务器保存的方法");
+    this.http.post(rootUrl,JSON.stringify(str),{headers:this.headers})
     .toPromise().then().catch(this.handleError);
     console.log('that is a question');
-    console.log(this.rootUrl);
-
+    console.log(rootUrl);
     // this.http.get('http://localhost:8080/saysomethingtoangular/a')
     // .toPromise().then().catch(this.handleError);
     // console.log("this is for debug");
