@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Root } from '../interfaces/root';
 import { Config_block } from '../interfaces/config_blocks';
 import { RestApiService } from '../rest-api.service';
-import { Model } from '../tryHard/model';
 import { Http } from '@angular/http';
+import { Model } from '../return-model/model';
 
 @Component
 ({
@@ -11,9 +11,13 @@ import { Http } from '@angular/http';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
-export class EditComponent  
+export class EditComponent implements OnInit
 {
   
+  ngOnInit(): void {
+
+    
+  }
   //做双向数据绑定的数据模型，，定义的稍微复杂了一点，是根据一个描述前后端的JSON定义的
   root:Root =
   {
@@ -276,7 +280,7 @@ export class EditComponent
     ]
   }
   selects:string[]=["短连接","长链接"];//选择
-  select1:string[]=["保留","不保留"];//question
+  select1:string[]=["保留"];//question
   //返回给后端的数据模型定义
   model:Model = 
   {

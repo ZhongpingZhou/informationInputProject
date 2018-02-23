@@ -3,7 +3,6 @@ import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms'; // <-- NgModel lives here
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpModule} from '@angular/http';
-import { DefineModuleComponent } from './material/template';
 import {MatInputModule} from '@angular/material/input';
 import { AppComponent }  from './app.component';
 import { EditComponent } from './edit/edit.component';
@@ -17,6 +16,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { RouterModule }   from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { GuardService } from './guard-service.service';
+import { FormComponent } from './form/form.component';
 
 
 
@@ -47,6 +47,11 @@ import { GuardService } from './guard-service.service';
         path: 'edit',
         component:EditComponent,
         canActivate: [GuardService]
+      },
+      {
+        path: 'form',
+        component:FormComponent,
+        //canActivate: [GuardService]
       }
     ]),
     
@@ -60,7 +65,7 @@ import { GuardService } from './guard-service.service';
     
   ],
   declarations: [
-    AppComponent,DefineModuleComponent, EditComponent, LoginComponent, HeaderComponent, // LoginComponent
+    AppComponent, EditComponent, LoginComponent, HeaderComponent, FormComponent, // LoginComponent
   ],
   providers:[RestApiService,GuardService],
   bootstrap: [AppComponent ]

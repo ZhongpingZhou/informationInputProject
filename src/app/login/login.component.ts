@@ -3,7 +3,6 @@ import { User } from './user';
 import { RestApiService } from '../rest-api.service';
 import { Token } from './token';
 import { GuardService } from '../guard-service.service';
-import userModel from '../model/user.model';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +15,8 @@ export class LoginComponent
 {
   user:User = 
   {
-    username:"zzp",
-    password:"123456"
+    username:"",
+    password:""
   };
   token:Token = 
   {
@@ -40,14 +39,24 @@ export class LoginComponent
 
   login()
   {
+    if(document.cookie == "")
+    {
+      console.log("i will always love u chen si qi");
+
+    }
+    else
+    {
+      console.log(document.cookie);
+    }
     this.restApiService.login(this.user).then(token => this.token=token).then(
       token=>
       {
         if(this.token.token!=null)
         {
-          this.restApiService.is_login =true;
-          window.location.href='edit';
-
+          console.log(this.token.token);
+          this.restApiService.addCookie(this.token.token);
+          // this.restApiService.checkLogin();
+           window.location.href='edit';
         }
       }
     );

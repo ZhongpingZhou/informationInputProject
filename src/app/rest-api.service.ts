@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { Model } from './tryHard/model';
 import { User } from './login/user';
 import { promise } from 'selenium-webdriver';
 import { Token } from './login/token';
 import { NgModel } from '@angular/forms/src/directives/ng_model';
 import { Subject } from 'rxjs/Subject';
+import { Model } from './return-model/model';
 
 
 @Injectable()
@@ -33,6 +33,31 @@ export class RestApiService
     return Promise.reject(error.message || error);
 
   }
+
+
+  doAuthorityManage():boolean
+  {
+    if(document.cookie=="")
+    {
+      return false;
+
+    }
+    else
+    {
+      return true;
+    }
+
+  }
+
+
+  addCookie(arg0)
+  {
+    document.cookie = `token =`+arg0;
+    console.log(document.cookie);
+  }
+
+
+
 
 
 
@@ -66,14 +91,6 @@ export class RestApiService
   }
 
 
-
-  save1(str:Model)
-  {
-    console.log("change format");
-
-  }
-
-
 //用户登录  login 组件调用,返回一个token;
   login(user:User):Promise<Token>
   {
@@ -94,6 +111,11 @@ export class RestApiService
     this.headers.append('Authorization','Token bc00b47897a971eb42778b708528422c9d1d48ab');
     this.http
 
+  }
+
+  checkLogin()
+  {
+    this.is_login =true;
   }
 
   

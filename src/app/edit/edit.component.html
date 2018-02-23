@@ -9,7 +9,7 @@
 
       <div *ngIf="item.key==&quot;online_mode&quot;">
         <mat-form-field class="example-full-width">
-          <mat-select placeholder="{{item.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(单位:{{item.detail.unit}})"   [(ngModel)]="item.detail.enumList.text" >
+          <mat-select placeholder="{{item.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"   [(ngModel)]="item.detail.enumList.text" >
             <mat-option *ngFor="let select of selects" [value]="select">
               {{select}}
             </mat-option>
@@ -19,7 +19,7 @@
       
       <div *ngIf="item.key==&quot;space_holder_1&quot;">
         <mat-form-field class="example-full-width">
-          <mat-select placeholder="{{item.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(单位:{{item.detail.unit}})"   [(ngModel)]="item.detail.enumList.text" >
+          <mat-select placeholder="{{item.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"   [(ngModel)]="item.detail.enumList.text" >
             <mat-option *ngFor="let select of select1" [value]="select">
               {{select}}
             </mat-option>
@@ -33,18 +33,17 @@
     
     <div *ngIf="item.detail.enumList.value==null" >
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="{{item.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(单位:{{item.detail.unit}})"  [(ngModel)]="item.detail.enumList.text" name="fdsfsd" type="number">
+        <input matInput placeholder="{{item.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;({{item.detail.unit}})"  [(ngModel)]="item.detail.enumList.text" name="fdsfsd" type="number">
       </mat-form-field>
     </div>
 
 
   </div>
 </div>
-<div class="align" >
-  <button mat-fab  (click)="sendSave()">具体</button>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <button mat-fab  (click)="sendHSave()">抽象</button>
+
+<div class="bexample-container ">
+  <button mat-raised-button color="primary"   (click)="sendSave()">保存</button>
 </div>
-
-
-<div></div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+ 
+  

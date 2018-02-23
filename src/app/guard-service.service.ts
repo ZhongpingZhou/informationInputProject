@@ -2,7 +2,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import userModel from './model/user.model';
 import { RestApiService } from './rest-api.service';
 
 @Injectable()
@@ -11,18 +10,19 @@ export class GuardService implements CanActivate
   
   
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> 
-  {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     
     var path = route.routeConfig.path;
     const nextRoute = ['login','edit'];
-    let isLogin = this.restApi.is_login;
+    let isLogin = this.restApi.doAuthorityManage();
+    console.log(isLogin);
   
 
     if(nextRoute.indexOf(path) >=0)
     {
       if(!isLogin)
       {
+        console.log("false"+ isLogin);
         //未登录，跳转到login
         this.router.navigate(['login']);
         return false;
@@ -30,6 +30,7 @@ export class GuardService implements CanActivate
       }
       else
       {
+
         //已经登录，跳转到当前路由
         return true;
       }
@@ -47,12 +48,13 @@ export class GuardService implements CanActivate
     }
     else
     {
-      this.router.navigate(['home']);
+      this.router.navigate(['edit']);
       return false;
 
     }
     
   }
+  
   constructor(private router:Router,
   private restApi:RestApiService) { }
 
