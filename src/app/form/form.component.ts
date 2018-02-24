@@ -14,15 +14,6 @@ import { RestApiService } from '../rest-api.service';
 
 export class FormComponent implements OnInit 
 {
-
-  constructor() 
-  { 
-  }
-
-  ngOnInit() 
-  {
-  }
-
   formModel:FormModel = 
   {
     blocks:
@@ -64,7 +55,7 @@ export class FormComponent implements OnInit
 
 
       {
-        name:'报警阀值',//配置块名称
+        name:'报警阈值',//配置块名称
         items:         //配置项
         [
           {
@@ -77,7 +68,7 @@ export class FormComponent implements OnInit
           },
           {
             key:'motion_threshold',
-            name:'运动阀值',
+            name:'运动阈值',
             type:'number',
             unit:'mg',
             value:null,
@@ -93,7 +84,7 @@ export class FormComponent implements OnInit
           },
           {
             key:'still_threshold',
-            name:'静止阀值',
+            name:'静止阈值',
             type:'number',
             unit:'mg',
             value:null,
@@ -220,6 +211,7 @@ export class FormComponent implements OnInit
     }
 
   }
+
   returnModel:ReturnModel = {
     content:''
   };
@@ -227,10 +219,21 @@ export class FormComponent implements OnInit
   {
     this.returnValue ="";
     this. getReturnValue() ;
-    console.log(this.returnValue);
+    //console.log(this.returnValue);
     this.returnModel.content =this.returnValue;
-    console.log(this.returnModel);
-    
+   // console.log(this.returnModel);
+   this.restApiService.saveFormModel(this.returnModel);
+   
+
+
+  }
+
+  constructor(private restApiService:RestApiService) 
+  { 
+  }
+
+  ngOnInit() 
+  {
   }
 
 

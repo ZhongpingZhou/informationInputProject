@@ -3,6 +3,7 @@ import { User } from './user';
 import { RestApiService } from '../rest-api.service';
 import { Token } from './token';
 import { GuardService } from '../guard-service.service';
+import { CookieService } from '../cookie.service';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,8 @@ export class LoginComponent
   constructor
   (
     private restApiService: RestApiService,
-    private guardService:GuardService 
+    private guardService:GuardService,
+    private cookieService:CookieService
 
   )
   {
@@ -39,33 +41,22 @@ export class LoginComponent
 
   login()
   {
-    if(document.cookie == "")
-    {
-      console.log("i will always love u chen si qi");
-
-    }
-    else
-    {
-      console.log(document.cookie);
-    }
     this.restApiService.login(this.user).then(token => this.token=token).then(
       token=>
       {
         if(this.token.token!=null)
         {
           console.log(this.token.token);
-          this.restApiService.addCookie(this.token.token);
+          //this.restApiService.addCookie(this.token.token);  采用github上面的方式
           // this.restApiService.checkLogin();
-           window.location.href='edit';
+          this.cookieService.set('Token',this.token.token); //gitHub上比较好的方式
+           window.location.href='form';
+          console.log(document.cookie);
         }
       }
     );
   }
 
-  getYourOwnOrgId()
-  {
-    this.restApiService.getYourOwnOrgId();
-  }
 
 
   

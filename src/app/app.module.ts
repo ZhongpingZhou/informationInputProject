@@ -17,6 +17,8 @@ import { RouterModule }   from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { GuardService } from './guard-service.service';
 import { FormComponent } from './form/form.component';
+import { TestApiComponent } from './test-api/test-api.component';
+import { CookieService } from './cookie.service';
 
 
 
@@ -52,6 +54,11 @@ import { FormComponent } from './form/form.component';
         path: 'form',
         component:FormComponent,
         canActivate: [GuardService]
+      },
+      {
+        path:'api',
+        component:TestApiComponent
+
       }
     ]),
     
@@ -65,9 +72,9 @@ import { FormComponent } from './form/form.component';
     
   ],
   declarations: [
-    AppComponent, EditComponent, LoginComponent, HeaderComponent, FormComponent, // LoginComponent
+    AppComponent, EditComponent, LoginComponent, HeaderComponent, FormComponent, TestApiComponent, // LoginComponent
   ],
-  providers:[RestApiService,GuardService],
+  providers:[RestApiService,GuardService,CookieService],
   bootstrap: [AppComponent ]
 })
 export class AppModule { }

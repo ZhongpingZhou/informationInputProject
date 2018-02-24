@@ -6,23 +6,39 @@ import { promise } from 'selenium-webdriver';
 import { Token } from './login/token';
 import { NgModel } from '@angular/forms/src/directives/ng_model';
 import { Subject } from 'rxjs/Subject';
-import { Model } from './return-model/model';
+import { ReturnModel } from './form/return-model/return-model';
+import { CookieService } from './cookie.service';
 
 
 @Injectable()
 export class RestApiService 
 {
-  is_login = false;
-  private _loginStateSource = new Subject();
-  loginState$ = this._loginStateSource.asObservable();
+  private host = '/proxy/';
 
-  private rootUrl1 = '/proxy/token-auth/';
-  private headers = new Headers({'Content-Type': 'application/json'});
-  
-  private url3='/proxy/account/';
-  
+  constructor(private http:Http,private cookieService:CookieService){}
 
-  constructor(private http:Http){}
+  //获取请求头
+  getHeaders (isSubmit = false): Headers 
+  {
+    const header = new Headers();
+    header.append('Content-Type', 'application/json');
+    if (isSubmit) 
+    {
+      header.append('Authorization', 'Token '+this.cookieService.get('Token'));
+    }
+
+    return header;
+  }
+
+  // 将form中的数据patch到服务端
+  saveFormModel(returnModel:ReturnModel)
+  {
+    const url = this.host+'orgs/1/street_light_monitors/CL201801170000/config/';
+    const header = this.getHeaders(true);
+    this.http.patch(url,JSON.stringify(returnModel),{headers:header}).toPromise().then(res => console.log(res))
+    .catch(this.handleError);
+
+  }
 
   //错误处理方法
   private handleError(error: any): Promise<any> 
@@ -33,10 +49,10 @@ export class RestApiService
   }
 
 
-  //权限,判断cookie是否为空
+  //权限判断，这个可能存在问题
   doAuthorityManage():boolean
   {
-    if(document.cookie=="")
+    if(this.cookieService.get('Token')=="")
     {
       return false;
 
@@ -49,56 +65,14 @@ export class RestApiService
   }
 
 
-  // 向浏览器中添加cookie (当用户登录成功时)
-  addCookie(arg0)
-  {
-    document.cookie = `token =`+arg0;
-    console.log(document.cookie);
-  }
-  
-  save(str:Model)
-  {
-    const rootUrl ='/angular/saysomethingtoangular/a';
-    console.log("将数据发送到服务器保存的方法");
-    this.http.post(rootUrl,JSON.stringify(str),{headers:this.headers})
-    .toPromise().then().catch(this.handleError);
-    console.log('that is a question');
-    console.log(rootUrl);
-    // this.http.get('http://localhost:8080/saysomethingtoangular/a')
-    // .toPromise().then().catch(this.handleError);
-    // console.log("this is for debug");
-
-  }
-
-
-//用户登录  login 组件调用,返回一个token;
+  //用户登录login 组件调用,返回一个token;
   login(user:User):Promise<Token>
   {
-    return  this.http.post(this.rootUrl1,JSON.stringify(user),{headers:this.headers}).toPromise().then(res => (res.json()) as Token)
+    const header = this.getHeaders();
+    const url = this.host+'token-auth/'
+    return  this.http.post(url,JSON.stringify(user),{headers:header}).toPromise().then(res => (res.json()) as Token)
     .catch(this.handleError);
   
   }
-  getYourOwnOrgId()
-  {
-    this.headers.append('Authorization','Token bc00b47897a971eb42778b708528422c9d1d48ab');
-    this.http.get(this.url3,{headers:this.headers}).toPromise().then(response => console.log(response.json()));
-
-
-  }
-
-  getConfigSchemas()
-  {
-    this.headers.append('Authorization','Token bc00b47897a971eb42778b708528422c9d1d48ab');
-    this.http
-
-  }
-
-  checkLogin()
-  {
-    this.is_login =true;
-  }
-
-  
-
 
 }

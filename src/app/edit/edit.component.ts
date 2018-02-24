@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Root } from '../interfaces/root';
-import { Config_block } from '../interfaces/config_blocks';
 import { RestApiService } from '../rest-api.service';
 import { Http } from '@angular/http';
-import { Model } from '../return-model/model';
+import { Root } from './interfaces/root';
+import { Model } from './return-model/model';
 
 @Component
 ({
@@ -363,6 +362,5 @@ export class EditComponent implements OnInit
   sendSave()
   {
     this.change();//更加此时此刻的做了双向数据绑定的root数据，更新model数据
-    this.restApiService.save(this.model);//发送给后端
   }
 }
