@@ -1,4 +1,5 @@
 <div class="example-container" *ngFor="let block of formModel.blocks"  ><!--config_blocks 是数组,遍历将取出每一个配置块-->
+  
   <p><strong>{{block.name}}</strong></p>
   
   
@@ -8,16 +9,18 @@
 
     <div *ngIf="item.isSelect">
       <mat-form-field class="example-full-width">
-        <mat-select placeholder="{{item.name}}"   [(ngModel)]="item.value">
-          <mat-option *ngFor="let select of item.selects" [value]="select.text" >
+        <mat-select placeholder="{{item.name}}"   [(ngModel)]="item.value"  required>
+          <mat-option *ngFor="let select of item.selects" [value]="select.text">
             {{select.text}}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
+
     <div *ngIf="!item.isSelect">
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="{{item.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;({{item.unit}})" [(ngModel)]="item.value" name="dd" type="{{item.type}}">
+        <input matInput placeholder="{{item.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;({{item.unit}})" [(ngModel)]="item.value" name="dd" type="{{item.type}}"  min="0" required  max="{{item.max}}"
+        (input)="verify()">
       </mat-form-field>
     </div>
 
@@ -25,8 +28,10 @@
 
   </div>
 
-
 </div>
+
+
+
 
 
 <div class="bexample-container ">

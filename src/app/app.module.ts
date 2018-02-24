@@ -1,6 +1,6 @@
 import { NgModule }       from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
-import { FormsModule }    from '@angular/forms'; // <-- NgModel lives here
+import { FormsModule/*表单校验*/ }    from '@angular/forms'; // <-- NgModel lives here
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpModule} from '@angular/http';
 import {MatInputModule} from '@angular/material/input';
@@ -72,7 +72,7 @@ import { CookieService } from './cookie.service';
     
   ],
   declarations: [
-    AppComponent, EditComponent, LoginComponent, HeaderComponent, FormComponent, TestApiComponent, // LoginComponent
+    AppComponent, EditComponent, LoginComponent, HeaderComponent, FormComponent, TestApiComponent
   ],
   providers:[RestApiService,GuardService,CookieService],
   bootstrap: [AppComponent ]

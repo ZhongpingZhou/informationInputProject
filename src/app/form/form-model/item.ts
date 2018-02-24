@@ -10,4 +10,5 @@ export class Item
     isSelect:boolean; //是下拉框选择还是输入框输入
     selects?:Select[];//如果是下拉框选择,那么他有这些选项
     beSelect?:string; // 如果是select ,则数据绑定到这里
+    max?:number;
 }

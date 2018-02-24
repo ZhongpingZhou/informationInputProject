@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormModel } from './form-model/model';
 import { ReturnModel } from './return-model/return-model';
 import { RestApiService } from '../rest-api.service';
+import { FormControl, Validators } from '@angular/forms';
 
 
 
@@ -47,7 +48,8 @@ export class FormComponent implements OnInit
             type:'number',
             unit:'分钟',
             value:null,
-            isSelect:false
+            isSelect:false,
+            max:65536                                 //1
           },
 
         ]
@@ -64,7 +66,8 @@ export class FormComponent implements OnInit
             type:'number',
             unit:'秒',
             value:null,
-            isSelect:false
+            isSelect:false,
+            max:65535                             //2
           },
           {
             key:'motion_threshold',
@@ -72,7 +75,8 @@ export class FormComponent implements OnInit
             type:'number',
             unit:'mg',
             value:null,
-            isSelect:false
+            isSelect:false,
+            max:65535                           //3
           },
           {
             key:'motion_keep_time',
@@ -80,7 +84,8 @@ export class FormComponent implements OnInit
             type:'number',
             unit:'毫秒',
             value:null,
-            isSelect:false
+            isSelect:false,
+            max:65535                            //4
           },
           {
             key:'still_threshold',
@@ -88,7 +93,8 @@ export class FormComponent implements OnInit
             type:'number',
             unit:'mg',
             value:null,
-            isSelect:false
+            isSelect:false,
+            max:65535                               //5
           },
           {
             key:'still_keep_time',
@@ -96,7 +102,8 @@ export class FormComponent implements OnInit
             type:'number',
             unit:'毫秒',
             value:null,
-            isSelect:false
+            isSelect:false,
+            max:65535                              //6
           },
           {
             key:'space_holder_1',
@@ -129,7 +136,8 @@ export class FormComponent implements OnInit
             type:'number',
             unit:'mg',
             value:null,
-            isSelect:false
+            isSelect:false,
+            max:65535                //7
           },
           {
             key:'acceleration_offset_y',
@@ -137,7 +145,8 @@ export class FormComponent implements OnInit
             type:'number',
             unit:'mg',
             value:null,
-            isSelect:false
+            isSelect:false,
+            max:65535              //8
           },
           {
             key:'acceleration_offset_z',
@@ -145,7 +154,8 @@ export class FormComponent implements OnInit
             type:'number',
             unit:'mg',
             value:null,
-            isSelect:false
+            isSelect:false,
+            max:65535            //9
           },
 
         ]
@@ -160,7 +170,8 @@ export class FormComponent implements OnInit
             type:'number',
             unit:'台',
             value:null,
-            isSelect:false
+            isSelect:false,
+            max: 255        //  10
           },
         ]
       }
@@ -217,24 +228,67 @@ export class FormComponent implements OnInit
   };
   save()
   {
-    this.returnValue ="";
-    this. getReturnValue() ;
-    //console.log(this.returnValue);
-    this.returnModel.content =this.returnValue;
-   // console.log(this.returnModel);
-   this.restApiService.saveFormModel(this.returnModel);
+    if(this.isLegal())
+    {
+      this.returnValue ="";
+      this. getReturnValue() ;
+      //console.log(this.returnValue);
+      this.returnModel.content =this.returnValue;
+      // console.log(this.returnModel);
+      this.restApiService.saveFormModel(this.returnModel);
+
+    }
+    else
+    {
+      alert("信息未输入或信息未输入完整，请将信息输入完整");
+    }
    
 
 
   }
 
   constructor(private restApiService:RestApiService) 
-  { 
+  {
+
   }
+
+
+  //当提交的时候，判断信息是否合法
+  isLegal ():boolean
+  {
+    var guard=true; //哨兵
+
+    for(let block of this.formModel.blocks )
+    {
+      for(let item of block.items)
+      {
+        if(item.value ==null || item.value=='')
+        {
+          guard = false;
+          return false;//信息不合法
+        }
+      }
+
+    }
+    if(guard)
+    {
+      return true;  //信息合法
+
+    }
+
+
+    return null
+  
+  }
+
+
+
 
   ngOnInit() 
   {
   }
-
-
+  
+  emailFormControl = new FormControl('', [
+    Validators.max(100),
+  ]);
 }

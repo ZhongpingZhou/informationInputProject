@@ -52,14 +52,15 @@ export class RestApiService
   //权限判断，这个可能存在问题
   doAuthorityManage():boolean
   {
-    if(this.cookieService.get('Token')=="")
+    if(this.cookieService.check("Token"))
     {
-      return false;
+     
+      return true;
 
     }
     else
     {
-      return true;
+      return false;
     }
 
   }
