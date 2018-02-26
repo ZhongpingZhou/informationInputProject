@@ -9,7 +9,6 @@ import { Subject } from 'rxjs/Subject';
 import { ReturnModel } from './form/return-model/return-model';
 import { CookieService } from './cookie.service';
 
-
 @Injectable()
 export class RestApiService 
 {
@@ -64,8 +63,7 @@ export class RestApiService
     }
 
   }
-
-
+  
   //用户登录login 组件调用,返回一个token;
   login(user:User):Promise<Token>
   {

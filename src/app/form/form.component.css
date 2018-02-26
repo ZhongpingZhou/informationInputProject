@@ -24,10 +24,13 @@
   .bexample-container 
 {
   display: flex;
-  flex-direction: column;
-  position: relative;
+
   margin: 0 auto;
   margin-top: 30x;
   width: 20px;
 
+}
+.selected {
+ background-color:red !important;
+  color: white;
 }

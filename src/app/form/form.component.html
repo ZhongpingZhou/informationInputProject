@@ -20,7 +20,7 @@
     <div *ngIf="!item.isSelect">
       <mat-form-field class="example-full-width">
         <input matInput placeholder="{{item.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;({{item.unit}})" [(ngModel)]="item.value" name="dd" type="{{item.type}}"  min="0" required  max="{{item.max}}"
-        (input)="verify()">
+        [class.selected]="item.value > item.max || item.value < 0">
       </mat-form-field>
     </div>
 

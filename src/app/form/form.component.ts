@@ -3,6 +3,7 @@ import { FormModel } from './form-model/model';
 import { ReturnModel } from './return-model/return-model';
 import { RestApiService } from '../rest-api.service';
 import { FormControl, Validators } from '@angular/forms';
+import { DialogOverviewExample } from '../dialog/dialog.component';
 
 
 
@@ -240,14 +241,15 @@ export class FormComponent implements OnInit
     }
     else
     {
-      alert("信息未输入或信息未输入完整，请将信息输入完整");
+      this.dialog.openDialog();
+
     }
    
 
 
   }
 
-  constructor(private restApiService:RestApiService) 
+  constructor(private restApiService:RestApiService,private dialog:DialogOverviewExample) 
   {
 
   }
@@ -262,7 +264,7 @@ export class FormComponent implements OnInit
     {
       for(let item of block.items)
       {
-        if(item.value ==null || item.value=='')
+        if(item.value===null || item.value=='' || item.value>item.max || item.value < 0)
         {
           guard = false;
           return false;//信息不合法
@@ -275,10 +277,6 @@ export class FormComponent implements OnInit
       return true;  //信息合法
 
     }
-
-
-    return null
-  
   }
 
 

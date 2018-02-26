@@ -13,18 +13,15 @@ import { LoginComponent } from './login/login.component';
 
 import {MatSelectModule} from '@angular/material/select';
 
+import {MatDialogModule} from '@angular/material/dialog';
+
 import { RouterModule }   from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { GuardService } from './guard-service.service';
 import { FormComponent } from './form/form.component';
 import { TestApiComponent } from './test-api/test-api.component';
 import { CookieService } from './cookie.service';
-
-
-
-
-
-
+import { DialogOverviewExample, DialogOverviewExampleDialog } from './dialog/dialog.component';
 
 @NgModule({
   imports: [
@@ -32,6 +29,7 @@ import { CookieService } from './cookie.service';
     FormsModule, 
     NoopAnimationsModule,
     MatSelectModule,
+    MatDialogModule,
 
 
     RouterModule.forRoot([
@@ -59,6 +57,11 @@ import { CookieService } from './cookie.service';
         path:'api',
         component:TestApiComponent
 
+      },
+      {
+        path:'dialog',
+        component:DialogOverviewExample
+
       }
     ]),
     
@@ -71,10 +74,12 @@ import { CookieService } from './cookie.service';
     HttpModule,
     
   ],
+
+  entryComponents: [DialogOverviewExampleDialog],
   declarations: [
-    AppComponent, EditComponent, LoginComponent, HeaderComponent, FormComponent, TestApiComponent
+    AppComponent, EditComponent, LoginComponent, HeaderComponent, FormComponent, TestApiComponent,DialogOverviewExampleDialog
   ],
-  providers:[RestApiService,GuardService,CookieService],
+  providers:[RestApiService,GuardService,CookieService,DialogOverviewExample],
   bootstrap: [AppComponent ]
 })
 export class AppModule { }
