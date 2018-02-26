@@ -8,8 +8,23 @@ import { RestApiService } from '../rest-api.service';
 })
 export class TestApiComponent 
 {
+  private username;
 
   constructor(private restApi:RestApiService) { }
+
+  getAccount()
+  {
+    this.restApi.getAccountInfo().then(info =>{
+      if('fullname' in info)
+      {
+        console.log('曾经来过');
+        this.username = info['fullname'];
+        console.log(this.username);
+      }
+    }) .catch(err => {
+      console.log(err);
+    });
+  }
 
   
  

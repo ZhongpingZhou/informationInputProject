@@ -68,10 +68,17 @@ export class RestApiService
   login(user:User):Promise<Token>
   {
     const header = this.getHeaders();
-    const url = this.host+'token-auth/'
+    const url = this.host+'token-auth/';
     return  this.http.post(url,JSON.stringify(user),{headers:header}).toPromise().then(res => (res.json()) as Token)
     .catch(this.handleError);
   
+  }
+  
+  getAccountInfo()
+  {
+    const header = this.getHeaders(true);
+    const url = this.host+'account/';
+    return this.http.get(url,{headers:header}).toPromise().then(res =>res.json()).catch(this.handleError);
   }
 
 }

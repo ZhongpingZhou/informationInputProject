@@ -15,6 +15,9 @@ import {MatSelectModule} from '@angular/material/select';
 
 import {MatDialogModule} from '@angular/material/dialog';
 
+
+import {MatMenuModule} from '@angular/material/menu';
+
 import { RouterModule }   from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { GuardService } from './guard-service.service';
@@ -30,6 +33,7 @@ import { DialogOverviewExample, DialogOverviewExampleDialog } from './dialog/dia
     NoopAnimationsModule,
     MatSelectModule,
     MatDialogModule,
+    MatMenuModule,
 
 
     RouterModule.forRoot([
@@ -55,13 +59,20 @@ import { DialogOverviewExample, DialogOverviewExampleDialog } from './dialog/dia
       },
       {
         path:'api',
-        component:TestApiComponent
+        component:TestApiComponent,
+        canActivate: [GuardService]
 
       },
       {
         path:'dialog',
-        component:DialogOverviewExample
+        component:DialogOverviewExample,
+        canActivate: [GuardService]
 
+      },
+      {
+        path:'header',
+        component:HeaderComponent,
+        canActivate: [GuardService]
       }
     ]),
     
@@ -77,7 +88,7 @@ import { DialogOverviewExample, DialogOverviewExampleDialog } from './dialog/dia
 
   entryComponents: [DialogOverviewExampleDialog],
   declarations: [
-    AppComponent, EditComponent, LoginComponent, HeaderComponent, FormComponent, TestApiComponent,DialogOverviewExampleDialog
+    AppComponent, EditComponent, LoginComponent,  FormComponent, TestApiComponent,DialogOverviewExampleDialog,HeaderComponent
   ],
   providers:[RestApiService,GuardService,CookieService,DialogOverviewExample],
   bootstrap: [AppComponent ]
