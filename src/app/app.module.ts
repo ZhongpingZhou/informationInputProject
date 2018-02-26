@@ -5,7 +5,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpModule} from '@angular/http';
 import {MatInputModule} from '@angular/material/input';
 import { AppComponent }  from './app.component';
-import { EditComponent } from './edit/edit.component';
 import { RestApiService } from './rest-api.service';
 // import { LoginComponent } from './login/login.component';
 import {MatButtonModule} from '@angular/material/button';
@@ -48,11 +47,6 @@ import { DialogOverviewExample, DialogOverviewExampleDialog } from './dialog/dia
         pathMatch: 'full'
       },
       {
-        path: 'edit',
-        component:EditComponent,
-        canActivate: [GuardService]
-      },
-      {
         path: 'form',
         component:FormComponent,
         canActivate: [GuardService]
@@ -88,7 +82,7 @@ import { DialogOverviewExample, DialogOverviewExampleDialog } from './dialog/dia
 
   entryComponents: [DialogOverviewExampleDialog],
   declarations: [
-    AppComponent, EditComponent, LoginComponent,  FormComponent, TestApiComponent,DialogOverviewExampleDialog,HeaderComponent
+    AppComponent, LoginComponent,  FormComponent, TestApiComponent,DialogOverviewExampleDialog,HeaderComponent
   ],
   providers:[RestApiService,GuardService,CookieService,DialogOverviewExample],
   bootstrap: [AppComponent ]

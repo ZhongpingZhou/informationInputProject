@@ -16,6 +16,7 @@ import { DialogOverviewExample } from '../dialog/dialog.component';
 
 export class FormComponent implements OnInit 
 {
+  //数据绑定的模型
   formModel:FormModel = 
   {
     blocks:
@@ -167,7 +168,7 @@ export class FormComponent implements OnInit
         [
           {
             key:'slave_number',
-            name:'X轴', //  配置项名称
+            name:'子锁数量', //  配置项名称
             type:'number',
             unit:'台',
             value:null,
@@ -227,12 +228,13 @@ export class FormComponent implements OnInit
   returnModel:ReturnModel = {
     content:''
   };
+  //保存方法
   save()
   {
     if(this.isLegal())
     {
       this.returnValue ="";
-      this. getReturnValue() ;
+      this. getReturnValue() ;//将returnvalue值初始化
       //console.log(this.returnValue);
       this.returnModel.content =this.returnValue;
       // console.log(this.returnModel);
@@ -285,8 +287,4 @@ export class FormComponent implements OnInit
   ngOnInit() 
   {
   }
-  
-  emailFormControl = new FormControl('', [
-    Validators.max(100),
-  ]);
 }
