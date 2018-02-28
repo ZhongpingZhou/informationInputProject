@@ -14,7 +14,7 @@ import { DialogOverviewExample } from '../dialog/dialog.component';
   styleUrls: ['./form.component.css']
 })
 
-export class FormComponent implements OnInit 
+export class FormComponent  
 {
   //数据绑定的模型
   formModel:FormModel = 
@@ -184,11 +184,6 @@ export class FormComponent implements OnInit
   //返回值
   returnValue:string;
 
-  // 测试数据绑定的方法
-  get diagnostic() 
-  { 
-    return JSON.stringify(this.returnValue); 
-  }
 
   //通过这个方法从绑定表单的数据模型中提取出需要返回的数据
   getReturnValue() 
@@ -281,10 +276,4 @@ export class FormComponent implements OnInit
     }
   }
 
-
-
-
-  ngOnInit() 
-  {
-  }
 }
