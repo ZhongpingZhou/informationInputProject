@@ -6,9 +6,7 @@ import {HttpModule} from '@angular/http';
 import {MatInputModule} from '@angular/material/input';
 import { AppComponent }  from './app.component';
 import { RestApiService } from './rest-api.service';
-// import { LoginComponent } from './login/login.component';
 import {MatButtonModule} from '@angular/material/button';
-import { LoginComponent } from './login/login.component';
 
 import {MatSelectModule} from '@angular/material/select';
 
@@ -17,11 +15,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 import {MatMenuModule} from '@angular/material/menu';
 
-import { RouterModule }   from '@angular/router';
-import { HeaderComponent } from './header/header.component';
-import { GuardService } from './guard-service.service';
+import { RouterModule, PreloadAllModules }   from '@angular/router';
 import { FormComponent } from './form/form.component';
-import { TestApiComponent } from './test-api/test-api.component';
 import { CookieService } from './cookie.service';
 import { DialogOverviewExample, DialogOverviewExampleDialog } from './dialog/dialog.component';
 
@@ -33,42 +28,12 @@ import { DialogOverviewExample, DialogOverviewExampleDialog } from './dialog/dia
     MatSelectModule,
     MatDialogModule,
     MatMenuModule,
-
-
     RouterModule.forRoot([
-      {
-        path: 'login',
-        component: LoginComponent 
-      },
-      
-      {
-        path: '',
-        redirectTo: '/login',
-        pathMatch: 'full'
-      },
-      {
-        path: 'form',
-        component:FormComponent,
-        canActivate: [GuardService]
-      },
-      {
-        path:'api',
-        component:TestApiComponent,
-        canActivate: [GuardService]
-
-      },
-      {
-        path:'dialog',
-        component:DialogOverviewExample,
-        canActivate: [GuardService]
-
-      },
-      {
-        path:'header',
-        component:HeaderComponent,
-        canActivate: [GuardService]
-      }
-    ]),
+    {
+      path: 'form',
+      component:FormComponent,
+    },
+    ],{preloadingStrategy: PreloadAllModules,useHash:true}),
     
 
     
@@ -82,9 +47,8 @@ import { DialogOverviewExample, DialogOverviewExampleDialog } from './dialog/dia
 
   entryComponents: [DialogOverviewExampleDialog],
   declarations: [
-    AppComponent, LoginComponent,  FormComponent, TestApiComponent,DialogOverviewExampleDialog,HeaderComponent
-  ],
-  providers:[RestApiService,GuardService,CookieService,DialogOverviewExample],
+    AppComponent, FormComponent,DialogOverviewExampleDialog],
+  providers:[RestApiService,CookieService,DialogOverviewExample],
   bootstrap: [AppComponent ]
 })
-export class AppModule { }
+export class AModule { }
