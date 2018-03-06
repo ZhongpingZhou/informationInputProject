@@ -33,14 +33,9 @@ import { DialogOverviewExample, DialogOverviewExampleDialog } from './dialog/dia
       path: 'form',
       component:FormComponent,
     },
-    ],{preloadingStrategy: PreloadAllModules,useHash:true}),
-    
-
-    
+    ],),
     MatInputModule,
     MatButtonModule,
-
-
     HttpModule,
     
   ],
